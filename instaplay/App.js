@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import { Text, View , ImageBackground, Image, StatusBar, ScrollView } from 'react-native';
+import { Text, View , ImageBackground, Image, StatusBar, ScrollView, Linking } from 'react-native';
 import LoginButton from './src/components/LoginButton';
+import TappableText from './src/components/TappableText';
 import Dimensions from 'Dimensions';
 
 const windowSize = Dimensions.get('window');
@@ -85,6 +86,17 @@ LoginButtonPressed = () => {
                    facebook Login
 
                   </LoginButton>
+
+                  <View style= {viewstyles.forgottenLoginEncapsulationview}>
+                    <Text style={textStyles.forgottenLogin}>  forgot your login details?</Text>
+                    <TappableText
+                      textStyle= {[textStyles.forgottenLogin, textStyles.forgottenLoginBold]}
+                      textTapped={ () => Linking.openURL(urls.forgotInstagramLogin)}
+                      >
+                      Get Help Sigining in
+                      </TappableText>
+
+                  </View>
             </ScrollView>
 
          </ImageBackground>
@@ -135,7 +147,14 @@ const viewstyles = {
 },
   facebookLoginButtonView: {
     backgroundColor: colors.facebook
-  }
+  },
+  forgottenLoginEncapsulationview: {
+    flexDirection: 'row',
+    flex: 1,
+    marginTop: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 };
 
 
@@ -144,5 +163,16 @@ const viewstyles = {
 
 
 const textStyles = {
+  forgottenLogin: {
+    color: 'white',
+    fontSize: loginButtonInfo.pageFontSize,
+    backgroundColor: 'transparent'
+  },
+  forgottenLoginBold: {
+    fontWeight: 'bold',
+    marginLeft: 3
+
+  },
+
 
 };
