@@ -94,9 +94,15 @@ LoginButtonPressed = () => {
                       textTapped={ () => Linking.openURL(urls.forgotInstagramLogin)}
                       >
                       Get Help Sigining in
-                      </TappableText>
-
+                    </TappableText>
                   </View>
+
+                  <View style={viewstyles.orSeparatorView}>
+                    <View style={viewstyles.orSeparatorLine} />
+                    <Text style={textStyles.orSeparatorTextStyle}>OR</Text>
+                    <View style={viewstyles.orSeparatorLine} />
+                  </View>
+
             </ScrollView>
 
          </ImageBackground>
@@ -155,6 +161,24 @@ const viewstyles = {
     justifyContent: 'center',
     alignItems: 'center',
   },
+  orSeparatorView: {
+    flexDirection: 'row',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 18,
+    //backgroundColor: 'white',
+    paddingHorizontal: 5
+
+  },
+  orSeparatorLine: {
+    height: 1,
+    flex: 5,
+    backgroundColor: colors.instagramButtonBorderColor,
+    borderColor: colors.instagramButtonBorderColor,
+    borderWidth: 0.5,
+    marginHorizontal: 5
+  }
 };
 
 
@@ -171,8 +195,12 @@ const textStyles = {
   forgottenLoginBold: {
     fontWeight: 'bold',
     marginLeft: 3
-
   },
+  orSeparatorTextStyle: {
+    //orSeparatorTextStyle
+    color: 'white',
+    backgroundColor: 'transparent'
+  }
 
 
 };
