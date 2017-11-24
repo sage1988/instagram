@@ -42,6 +42,25 @@ export default class App extends Component {
 LoginButtonPressed = () => {
   console.log("Button Pressed!!");
 }
+
+loginWithTwitterComponent = () => {
+  return(
+      <View style={viewstyles.twitterLoginViewStyles}>
+        <Image
+          source={require('./src/images/icons/twitter_bird.png')}
+          style={viewstyles.twitterIcon}
+          resizeMode={'contain'}
+        />
+        <TappableText
+          textStyle= {[textStyles.forgottenLogin, textStyles.forgottenLoginBold]}
+          textTapped={ () => Linking.openURL(urls.twitterLogin)}
+          >
+          Log In Twitter
+        </TappableText>
+      </View>
+    );
+}
+
     loginScreenComponent = () => {
       return (
         <ImageBackground
@@ -70,10 +89,9 @@ LoginButtonPressed = () => {
                 buttonTapped={(this.LoginButtonPressed)}
                 instaramButtonTouchableHeightlightStyle={viewstyles.instagramLoginButton}
                 activeOpacity={0.75}
-
-                >
+              >
                  Login (Via Instagram)
-                 </LoginButton>
+              </LoginButton>
 
                 <LoginButton
                   buttonViewStyle={[viewstyles.instagramLoginButtonView, viewstyles.facebookLoginButtonView]}
@@ -85,7 +103,7 @@ LoginButtonPressed = () => {
                   >
                    facebook Login
 
-                  </LoginButton>
+                </LoginButton>
 
                   <View style= {viewstyles.forgottenLoginEncapsulationview}>
                     <Text style={textStyles.forgottenLogin}>  forgot your login details?</Text>
@@ -103,10 +121,12 @@ LoginButtonPressed = () => {
                     <View style={viewstyles.orSeparatorLine} />
                   </View>
 
+                  {this.loginWithTwitterComponent()}
+
             </ScrollView>
 
          </ImageBackground>
-    );
+       );
     }
 
   render() {
@@ -114,6 +134,8 @@ LoginButtonPressed = () => {
       this.loginScreenComponent()
     );
   }
+
+
 }
 
 const viewstyles = {
@@ -178,8 +200,22 @@ const viewstyles = {
     borderColor: colors.instagramButtonBorderColor,
     borderWidth: 0.5,
     marginHorizontal: 5
+  },
+  twitterLoginViewStyles: {
+    flexDirection:'row',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  twitterIcon: {
+    width: 17,
+    height:17,
+    marginHorizontal: 4
   }
+
 };
+
+
 
 
 
@@ -199,7 +235,13 @@ const textStyles = {
   orSeparatorTextStyle: {
     //orSeparatorTextStyle
     color: 'white',
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
+    fontWeight: 'bold',
+    fontSize: 13
+  },
+
+  twitterLogin:{
+    fontSize:20
   }
 
 
