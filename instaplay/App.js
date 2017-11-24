@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import { Text, View , ImageBackground, Image, StatusBar, ScrollView } from 'react-native';
 import LoginButton from './src/components/LoginButton';
+import Dimensions from 'Dimensions';
 
+const windowSize = Dimensions.get('window');
+const standardComponetWidth = windowSize.width * 0.82;
 
 const colors = {
   facebook: 'rgb(59, 89, 152)',
@@ -36,7 +39,7 @@ export default class App extends Component {
 
 
 LoginButtonPressed = () => {
-  console.log
+  console.log("Button Pressed!!");
 }
     loginScreenComponent = () => {
       return (
@@ -64,12 +67,24 @@ LoginButtonPressed = () => {
                 buttonViewStyle={viewstyles.instagramLoginButtonView}
                 buttonTextStyle={{color: colors.text, fontWeight: '500'}}
                 buttonTapped={(this.LoginButtonPressed)}
+                instaramButtonTouchableHeightlightStyle={viewstyles.instagramLoginButton}
                 activeOpacity={0.75}
 
                 >
-                 Login
+                 Login (Via Instagram)
+                 </LoginButton>
 
-                </LoginButton>
+                <LoginButton
+                  buttonViewStyle={[viewstyles.instagramLoginButtonView, viewstyles.facebookLoginButtonView]}
+                  buttonTextStyle={{color: colors.text, fontWeight: '500'}}
+                  buttonTapped={(this.LoginButtonPressed)}
+                  TouchableHeightlightStyle={viewstyles.instagramLoginButtonTouchableHeightlighStyle, viewstyles.facbookloginButtonTouchableHeightlightStyle}
+                  activeOpacity={0.75}
+
+                  >
+                   facebook Login
+
+                  </LoginButton>
             </ScrollView>
 
          </ImageBackground>
@@ -92,17 +107,34 @@ const viewstyles = {
     width: 150,
     height: 80,
     marginTop: '65%',
-    marginBottom: 25
+    marginBottom: 25,
+    alignSelf: 'center'
   },
   instagramLoginButtonView: {
     backgroundColor: 'transparent',
     borderColor: colors.instagramButtonBorderColor,
     borderWidth: loginButtonInfo.borderWidth,
     borderRadius:loginButtonInfo.borderRadius,
-    width: '80%',
+    width: standardComponetWidth,
     height: loginButtonInfo.height,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  instaramButtonTouchableHeightlightStyle: {
+    backgroundColor: 'transparent',
+    width: standardComponetWidth,
+    height: loginButtonInfo.height,
+    marginTop: 5
+  },
+  facebookButtonTouchableHeightlightStyle: {
+    backgroundColor: 'transparent',
+    width: standardComponetWidth,
+    height: loginButtonInfo.height,
+    marginTop: 5
+
+},
+  facebookLoginButtonView: {
+    backgroundColor: colors.facebook
   }
 };
 
