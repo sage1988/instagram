@@ -25,7 +25,7 @@ const urls = {
   forgotInstagramLogin: 'https://www.instagram.com/accounts/password/reset',
   twitterLogin: 'https://twitter.com/login?lang=en',
   instagramSignUp: 'https://www.instagram.com/accounts/emailsignup/?hl=en',
-  instagramAuthLogin: 'https://api.instagram.com/oauth/authorize/?client_id=cda6dee7d8164a868150910407962f52&redirect_uri=http://www.kaitechconsulting.com&response_type=token&scope=basic+follower_list+comments+likes',
+  instagramAuthLogin: 'https://api.instagram.com/oauth/authorize/?client_id=facd352602ba4ffa8bb4da41cafb0a42&redirect_uri=http://www.kaitechconsulting.com&response_type=token&scope=basic+follower_list+comments+likes',
   instagramLogout: 'https://instagram.com/accounts/logout',
   instagramBase: 'https://www.instagram.com/',
 }
@@ -36,30 +36,70 @@ export default class App extends Component {
 
   constructor(props){
     super(props);
-  }
 
 
-LoginButtonPressed = () => {
+  this.state={
+  authenticationURL:urls.instagramAuthLogin,
+  accessToken: '',
+  isUserLoggedIn: false,
+  displayAuthenticationWebView: false
+}
+
+loginButtonPressed = () => {
   console.log("Button Pressed!!");
 }
 
-loginWithTwitterComponent = () => {
-  return(
-      <View style={viewstyles.twitterLoginViewStyles}>
-        <Image
-          source={require('./src/images/icons/twitter_bird.png')}
-          style={viewstyles.twitterIcon}
-          resizeMode={'contain'}
-        />
-        <TappableText
-          textStyle= {[textStyles.forgottenLogin, textStyles.forgottenLoginBold]}
-          textTapped={ () => Linking.openURL(urls.twitterLogin)}
-          >
-          Log In Twitter
-        </TappableText>
-      </View>
-    );
-}
+  onURLStateChange = (webViewState) => {
+    //this functionis called/executed everytime the URL is the browers changes
+    const accessTokenSubString = 'access_token';
+    console.log('Current URL =' + webViewState.url);
+
+    //if the current url contain the substring "access_token" then extract the access_token
+    if {webViewState.url.includes(accessTokenSubString)}{
+
+    }
+  }
+
+  authenticationWebViewComponent = () => {
+    return {
+      <WebView
+      source-{( url: this.state.authenticationURL)}{
+
+//the index of thr beginging of the access token
+        var startIndexOfAccessToken =webViewState.url.lastIndexOf(accessTokenSubString) + accessTokenSubString.length
+        var foundAccessToken = webViewState.url.substr(state indewx of accessToken);
+
+        this.setState{(accessToken:foundAccessToken, displayAuthenticationWebView: false)};
+
+        console.log('my access Token =' + foundAccessToken);
+
+//safegaurd conditional (if)  statement
+        if{this.state.accessToken.lenght = 1}{
+
+        }
+      }
+      startInloadingState={true}
+      />
+    }
+  }
+
+  loginWithTwitterComponent = () => {
+    return(
+        <View style={viewstyles.twitterLoginViewStyles}>
+          <Image
+            source={require('./src/images/icons/twitter_bird.png')}
+            style={viewstyles.twitterIcon}
+            resizeMode={'contain'}
+          />
+          <TappableText
+            textStyle= {[textStyles.forgottenLogin, textStyles.forgottenLoginBold]}
+            textTapped={ () => Linking.openURL(urls.twitterLogin)}
+            >
+            Log In Twitter
+          </TappableText>
+        </View>
+      );
+  }
 
     loginScreenComponent = () => {
       return (
@@ -130,8 +170,16 @@ loginWithTwitterComponent = () => {
     }
 
   render() {
-    return (
-      this.loginScreenComponent()
+    if (this.state.displayAuthenticationWebView == true) {
+      return {
+
+      };
+    }
+    else {
+      return (
+        this.loginScreenComponent()
+
+    }
     );
   }
 
